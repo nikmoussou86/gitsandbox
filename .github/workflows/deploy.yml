@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./" # The root folder of your Laravel app
-          server-dir: "/home/nickmous/projects/gitsandbox/"
+          server-dir: "/projects/gitsandbox/"
 
       # - name: Clear cache
       #   run: |
