@@ -1,0 +1,30 @@
+name: Deploy to Shared Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Install dependencies
+      #   run: composer install --no-dev --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: "ftp.nickmoussoulis.com"
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "./" # The root folder of your Laravel app
+          server-dir: "/home/nickmous/projects/gitsandbox/"
+
+      # - name: Clear cache
+      #   run: |
+      #     ssh yourusername@yourserver.com 'php artisan cache:clear && php artisan config:clear && php artisan route:clear'
